@@ -1,0 +1,177 @@
+.hide {
+  display: none;
+}
+.book-list-header {
+  display: flex;
+  align-items: center;
+}
+.book-list-header .quick-stats-container {
+  flex: 1;
+}
+.book-list-header .quick-stats-container ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+}
+.book-list-header .quick-stats-container ul li {
+  margin: 0 5px;
+}
+.book-list-header .quick-stats-container ul li .label {
+  font-weight: bold;
+}
+.book-list-header .quick-stats-container ul li .value {
+  margin-left: 3px;
+}
+.book-list-header .undo-button {
+  margin: 0 10px;
+}
+.book-list-header .filter-string-books {
+  margin: 0 10px;
+}
+.book-list-header .add-book-input-container {
+  display: flex;
+  flex-direction: column;
+}
+.book-list-header .add-book-input-container button {
+  margin: 0 5px 0 3px;
+}
+.book-list-header .add-book-input-container .book-preview {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #aaa;
+}
+.book-list-header .add-book-input-container .book-preview img {
+  margin-right: 10px;
+}
+.book-list-header .add-book-input-container .book-preview h3,
+.book-list-header .add-book-input-container .book-preview h4 {
+  margin: 5px 0;
+}
+.book-list-header .add-book-input-container .book-preview .book-details {
+  display: flex;
+  flex-direction: column;
+}
+.book-list-header .add-book-input-container .book-preview .book-details .button-container {
+  flex: 1;
+  position: relative;
+}
+.book-list-header .add-book-input-container .book-preview .book-details .button-container button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.book-list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.book-list li {
+  position: relative;
+  width: 128px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin: 0 0 -1px -1px;
+  border: 1px solid #ccc;
+}
+.book-list li:before,
+.book-list li:after {
+  position: absolute;
+  top: 0;
+  color: #008000;
+  padding: 3px;
+}
+.book-list li:before {
+  left: 0;
+}
+.book-list li:after {
+  right: 0;
+}
+.book-list li.reading:before {
+  content: 'R';
+}
+.book-list li.exlibris:before {
+  content: '✈';
+}
+.book-list li:hover {
+  cursor: pointer;
+}
+.show-book-container {
+  background: #fff;
+}
+.show-book-header {
+  display: flex;
+  justify-content: flex-end;
+}
+.show-book-header button {
+  margin: 0 5px;
+}
+.cover-container {
+  width: 128px;
+  margin-right: 10px;
+}
+.stars-container {
+  display: flex;
+  justify-content: center;
+}
+.stars-container .star:hover {
+  cursor: pointer;
+  color: #f00;
+}
+.show-book {
+  display: flex;
+}
+.show-book .title {
+  margin: 0;
+}
+.show-book .sub-title {
+  margin: 0;
+  font-style: italic;
+}
+.show-book .summary {
+  display: flex;
+}
+.show-book .summary > * {
+  margin-right: 10px;
+}
+.show-book .summary .page-count {
+  color: #aaa;
+}
+.show-book .description {
+  max-width: 40em;
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+}
+.show-book label {
+  display: flex;
+  align-items: flex-begin;
+  margin: 2px 0;
+}
+.show-book label > span {
+  display: inline-block;
+  width: 90px;
+  margin-right: 5px;
+}
+.show-book label > span.human {
+  width: auto;
+}
+.show-book label input {
+  opacity: 0;
+}
+.show-book label input:hover {
+  opacity: 1;
+}
+.show-book label textarea {
+  padding: 0.5em;
+  width: 500px;
+  height: 250px;
+}
+.show-book .muted {
+  color: #aaa;
+}

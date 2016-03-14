@@ -1,0 +1,61 @@
+
+.book-list-header
+  display flex
+  align-items center
+
+  .quick-stats-container
+    flex 1
+
+    ul
+      padding 0
+      list-style none
+      display flex
+      justify-content flex-end
+
+      li
+        margin 0 5px
+        .label
+          font-weight bold
+        .value
+          margin-left 3px
+
+  .undo-button
+    margin 0 10px
+
+  .filter-string-books
+    margin 0 10px
+
+  .add-book-input-container
+    display flex
+    flex-direction column
+
+    button
+      margin 0 5px 0 3px
+
+    .book-preview
+      display flex
+      position absolute
+      z-index 1
+      background white
+      padding 10px
+      border 1px solid #aaa
+
+      img
+        margin-right 10px
+
+      h3, h4
+        margin 5px 0
+
+      .book-details
+        display flex
+        flex-direction column
+
+        .button-container
+          flex 1
+          position relative
+
+          button
+            position absolute
+            bottom 0
+            right 0
+

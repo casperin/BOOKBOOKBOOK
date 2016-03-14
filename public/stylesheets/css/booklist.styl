@@ -1,0 +1,29 @@
+.book-list
+  padding 0
+  list-style none
+  display flex
+  flex-wrap wrap
+
+  li
+    position relative
+    width 128px
+    display flex
+    align-items center
+    padding 20px
+    margin 0 0 -1px -1px
+    border 1px solid #ccc
+    &:before, &:after
+      position absolute
+      top 0
+      color green
+      padding 3px
+    &:before
+      left 0
+    &:after
+      right 0
+    &.reading:before
+      content 'R'
+    &.exlibris:before
+      content '✈'
+    &:hover
+      cursor pointer
