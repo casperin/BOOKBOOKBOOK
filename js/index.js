@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import BookList from './components/booklist';
 import Show from './components/show';
+import Stats from './components/stats';
 import {subscribe, initialState} from './store/state';
 import Keyboard from './keyboard';
 
@@ -26,6 +27,10 @@ class Main extends React.Component {
 const getPage = state => {
   if (typeof state.show === 'number' && state.books[state.show])
     return <Show book={state.books[state.show]} index={state.show} />;
+
+  if (state.showStats)
+    return <Stats books={state.books} />;
+
   return <BookList {...state} />
 };
 

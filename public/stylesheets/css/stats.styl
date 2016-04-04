@@ -1,0 +1,112 @@
+.stats-container
+
+  .stats-header
+    display flex
+    justify-content space-between
+    align-items center
+
+  .timeline-container
+    border-left 1px solid black
+    margin-left 80px
+    display flex
+    position relative
+    overflow auto
+    padding 0 0 1px
+
+  .booklist-container
+    position relative
+    list-style none
+    margin 0
+    display flex
+    li
+      display flex
+      align-items flex-start
+      justify-content center
+      background tomato
+      width 44px
+      transition .2s
+      margin 0 3px
+      position absolute
+      &.rating-5
+        background #244906
+      &.rating-4
+        background #366e00
+      &.rating-3
+        background #4d940a
+      &.rating-2
+        background #6aae0d
+      &.rating-1
+        background #9bd240
+      &.abandoned
+        background #ccc
+      &:hover
+        &:before, &:after
+          z-index 0
+          content ''
+          border-top 1px solid rgba(0, 0, 0, .2)
+          position absolute
+          top 0px
+          left -9999em
+          right 0
+        &:after
+          top auto
+          bottom -1px
+
+      .stats-cover-small
+        width 32px
+        margin-top 5px
+        border 1px solid black
+        position relative
+        z-index 1
+
+  .datelist-container
+    position relative
+    list-style none
+    padding 0
+    margin 0
+    text-align right
+    color #ccc
+    font-size 13px
+    line-height 20px // SCALE
+    li
+      width 70px
+      padding-right 10px
+      position absolute
+      &.sunday
+        color tomato
+      &.highlight
+        color black
+      &:hover
+        color black
+      &:after
+        content ''
+        border-top 1px solid #aaa
+        width 10px
+        position absolute
+        right 1px
+
+
+  .show-book-container
+    position fixed
+    display flex
+    align-items center
+    justify-content center
+    top 100px
+    right 100px
+    z-index 2
+    padding 0 10px 10px
+    .show-book
+      width 400px
+      display flex
+      flex-direction column
+      align-items flex-start
+      > *
+        margin 5px 0
+    small
+      font-weight 400
+      display block
+    p
+      margin 0
+    .stars-container
+      justify-content flex-start
+

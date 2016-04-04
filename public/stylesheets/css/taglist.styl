@@ -1,0 +1,39 @@
+.taglist-container
+  width 300px
+  float right
+
+  .taglist-ul
+    padding 0
+    list-style none
+
+    .books // ul
+      height 0
+      overflow hidden
+      transition .2s
+
+      .stars-container
+        margin-left 5px
+        font-size small
+        display inline-block
+        .star
+          display inline-block
+          &:hover
+            color inherit
+
+      small
+        display block
+        color #666
+
+      li:hover
+        color blue
+        text-decoration underline
+        cursor pointer
+
+    .category-title
+      padding .4em 5px
+      &:hover 
+        background #f5f5f5 
+        .title
+          font-weight bold
+        .books
+          height auto

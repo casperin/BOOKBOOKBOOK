@@ -40,7 +40,8 @@ export default (action, data, state) => {
     case actions.escape:
       return {
         ...state,
-        show: null
+        show: null,
+        showStats: false
       };
 
     case actions.toggleAddBook:
@@ -71,6 +72,12 @@ export default (action, data, state) => {
           ...state.ui,
           filterString: data
         }
+      };
+
+    case actions.showStats:
+      return {
+        ...state,
+        showStats: data
       };
 
     default:

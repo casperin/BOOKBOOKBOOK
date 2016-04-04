@@ -9,6 +9,7 @@ const actions = {
   toggleAddBook: 'TOGGLE_ADD_BOOK',
   applyFilter: 'APPLY_FILTER',
   applyFilterString: 'APPLY_FILTER_STRING',
+  showStats: 'SHOW_STATS',
 };
 
 export default actions;

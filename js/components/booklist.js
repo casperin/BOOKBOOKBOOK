@@ -1,5 +1,6 @@
 import React from 'react';
 import BookListHeader from './bookListHeader';
+import TagList from './tagList';
 import BookItem from './bookItem';
 import AddBook from './addBook';
 import {sortBy} from '../util/array';
@@ -17,6 +18,7 @@ export default class BookList extends React.Component {
     const books = filterAndSort(this.props.ui.filterString, this.props.ui.filter, this.props.books);
     return (<div className='book-list-container'>
       <BookListHeader {...this.props} />
+      <TagList books={this.props.books} />
       <ul className='book-list'>
         {books.map((book) => <BookItem key={$id(book)} onClick={this.showBook.bind(this, book)} {...book} />)}
       </ul>

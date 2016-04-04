@@ -8,7 +8,7 @@ export default class BookListHeader extends React.Component {
     return (<div className='book-list-header'>
       <FilterBooks filter={this.props.ui.filter} filterString={this.props.ui.filterString} />
       <AddBook {...this.props.ui.addBook} />
-      <QuickStats {...this.props} />
+      <QuickStats {...this.props} showLink={true} />
     </div>);
   }
 }

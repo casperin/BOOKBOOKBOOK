@@ -1,14 +1,18 @@
 import React from 'react';
 import {$info} from '../util/book';
-import {$startDates} from '../util/books';
-import {$min} from '../util/array';
+import {$startDates, $earliestStartDate} from '../util/books';
 import {$daysSince, $humanDate} from '../util/date';
+import {update, actions} from '../store/state';
 
 export default class BookListHeader extends React.Component {
   render () {
     const books = this.props.books;
+    const statsLink = this.props.showLink
+      ? <li><a href='#' onClick={this.showStats.bind(this)}>Stats</a></li>
+      : null;
     return (<div className='quick-stats-container'>
       <ul className='quick-stats-list'>
+        {statsLink}
         <li>
           <span className='label'>Books</span>
           <span className='value'>{getNumberOfBooks(books)}</span>
@@ -19,10 +23,15 @@ export default class BookListHeader extends React.Component {
         </li>
         <li>
           <span className='label'>Pages/day</span>
-          <span className='value'>{averagePagesPerDay(books)} <small>since {$humanDate(earliestStartDate(books))}</small></span>
+          <span className='value'>{averagePagesPerDay(books)} <small>since {$humanDate($earliestStartDate(books))}</small></span>
         </li>
       </ul>
     </div>);
+  }
+
+  showStats (e) {
+    e.preventDefault();
+    update(actions.showStats, true);
   }
 }
 
@@ -37,13 +46,8 @@ const pagesRead = book => {
   return 0;
 }
 
-const earliestStartDate = books => {
-  const startedDates = books.map(book => book.started);
-  return $min(startedDates);
-}
-
 const averagePagesPerDay = books => {
-  const startDate = earliestStartDate(books);
+  const startDate = $earliestStartDate(books);
   const days = $daysSince(startDate);
   const pages = getNumberOfPages(books);
   return parseInt((pages/days), 10);

@@ -12,7 +12,8 @@ let initialState = {
       "open": false
     }
   },
-  "show": null
+  "show": null,
+  "showStats": false
 }
 
 let state = initialState;

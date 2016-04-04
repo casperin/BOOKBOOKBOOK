@@ -25,7 +25,7 @@ export const saveAddedBook = book => {
     url: '/add-book',
     method: 'POST',
     body: JSON.stringify(book)
-  }, (err, res) => {
+  }, (err, res, body) => {
     if (err) {
       console.error(err);
       throw err;
