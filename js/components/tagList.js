@@ -1,5 +1,6 @@
 import React from 'react';
 import {$info, $id, $title} from '../util/book';
+import {$avgRating} from '../util/books';
 import {$toTitle} from '../util/string';
 import {$sortBy} from '../util/array';
 import {update, actions} from '../store/state';
@@ -29,8 +30,13 @@ export default class TagList extends React.Component {
   }
 
   renderCategory ({category, books}) {
+    const avgRating = $avgRating(books);
     return (<li className='category-title' key={category}>
-      <span className='title'>{$toTitle(category)} ({books.length})</span>
+      <span className='title'>
+        {$toTitle(category)}
+        <small> {books.filter(b => b.finished).length}/{books.length}</small>
+        <small> {avgRating === null ? null : `★${avgRating}`}</small>
+      </span>
       <ul className='books'>
         {books.map(this.renderBook)}
       </ul>

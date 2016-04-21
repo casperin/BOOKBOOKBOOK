@@ -45,4 +45,15 @@ export const $normalizedBooks = books => {
 const $msToDays = ms => parseInt(ms/(60*60*24*1000), 10);
 const $dateToNum = date => +(date ? new Date(date) : new Date());
 
+export const $avgRating = books => {
+  let numOfBooks = 0;
+  let totalRating = 0;
+  books.forEach(b => {
+    if (b.rating === null) return;
+    numOfBooks++;
+    totalRating += b.rating;
+  });
+  if (numOfBooks === 0) return null;
+  return (totalRating/numOfBooks).toFixed(1);
+};
 
