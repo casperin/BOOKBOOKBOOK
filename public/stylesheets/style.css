@@ -78,6 +78,7 @@ body {
   width: 128px;
   display: flex;
   align-items: center;
+  flex-direction: column;
   padding: 20px;
   margin: 0 0 -1px -1px;
   border: 1px solid #ccc;
@@ -103,6 +104,15 @@ body {
 }
 .book-list li:hover {
   cursor: pointer;
+}
+.book-list li .cover-container {
+  flex: 1;
+}
+.book-list li .rated-null {
+  display: none;
+}
+.book-list li .star:hover {
+  color: #000;
 }
 .show-book-container {
   background: #fff;

@@ -20,9 +20,18 @@ export default class BookList extends React.Component {
       <BookListHeader {...this.props} />
       <TagList books={this.props.books} />
       <ul className='book-list'>
-        {books.map((book) => <BookItem key={$id(book)} onClick={this.showBook.bind(this, book)} {...book} />)}
+        {books.map(this.renderBook.bind(this))}
       </ul>
     </div>);
+  }
+
+  renderBook (book) {
+    return <BookItem
+      key={$id(book)}
+      onClick={this.showBook.bind(this, book)}
+      showRating={this.props.ui.showRating}
+      {...book}
+    />;
   }
 
   showBook (book) {

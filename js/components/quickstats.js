@@ -15,7 +15,7 @@ export default class BookListHeader extends React.Component {
         {statsLink}
         <li>
           <span className='label'>Books</span>
-          <span className='value'>{getNumberOfBooks(books)}</span>
+          <span className='value'>{books.filter(book => book.finished).length}</span>
         </li>
         <li>
           <span className='label'>Pages</span>
@@ -34,8 +34,6 @@ export default class BookListHeader extends React.Component {
     update(actions.showStats, true);
   }
 }
-
-const getNumberOfBooks = books => books.length;
 
 const getNumberOfPages = books =>
   books.reduce((pages, book) => pagesRead(book) + pages, 0);

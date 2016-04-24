@@ -74,6 +74,15 @@ export default (action, data, state) => {
         }
       };
 
+    case actions.toggleRating:
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          showRating: !state.ui.showRating
+        }
+      };
+
     case actions.showStats:
       return {
         ...state,

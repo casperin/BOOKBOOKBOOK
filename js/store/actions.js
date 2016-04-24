@@ -10,6 +10,7 @@ const actions = {
   applyFilter: 'APPLY_FILTER',
   applyFilterString: 'APPLY_FILTER_STRING',
   showStats: 'SHOW_STATS',
+  toggleRating: 'TOGGLE_RATING'
 };
 
 export default actions;

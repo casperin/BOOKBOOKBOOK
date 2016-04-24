@@ -10,10 +10,11 @@ let initialState = {
   "ui": {
     "addBook": {
       "open": false
-    }
+    },
+    "showRating": false
   },
   "show": null,
-  "showStats": false
+  "showStats": false,
 }
 
 let state = initialState;
