@@ -362,3 +362,23 @@ body {
 .taglist-container .taglist-ul .category-title:hover .books {
   height: auto;
 }
+.numbered-list-container {
+  list-style: none;
+  padding: 0;
+  margin: 1em 5px;
+}
+.numbered-list-container li {
+  padding-left: 40px;
+}
+.numbered-list-container .number {
+  display: inline-block;
+  font-weight: bold;
+  float: left;
+  margin-left: -40px;
+  width: 30px;
+  text-align: right;
+}
+.numbered-list-container small {
+  margin-left: 5px;
+  color: #999;
+}

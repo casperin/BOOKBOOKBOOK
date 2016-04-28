@@ -13,6 +13,9 @@ export default class TagList extends React.Component {
       <ul className='taglist-ul'>
         {categories.map(this.renderCategory.bind(this))}
       </ul>
+      <ul className='numbered-list-container'>
+        {$sortBy(b => -b.number, this.props.books.filter(b => b.number !== null)).map(this.renderNumbered)}
+      </ul>
     </div>);
   }
 
@@ -54,6 +57,14 @@ export default class TagList extends React.Component {
     {title}
     <Rating {...book} />
     <small>by {info.authors.join(', ')}</small>
+    </li>);
+  }
+
+  renderNumbered (book) {
+    return (<li key={$id(book)}>
+      <span className='number'>#{book.number}</span>
+      {$title(book)}
+      <small>by {$info(book).authors.join(', ')}</small>
     </li>);
   }
 }
