@@ -13,3 +13,9 @@ export const $avgPagesPerDay = book => {
   const duration = $daysSince(book.started, finished);
   return $info(book).pageCount / duration;
 }
+
+export const $notesLIst = book => {
+  const notes = book.notes;
+  if (!notes) return null;
+  return notes.split('\n\n');
+}

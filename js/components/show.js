@@ -10,7 +10,8 @@ export default class Show extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      showDescription: false
+      showDescription: false,
+      editNotes: false
     }
   }
 
@@ -78,7 +79,9 @@ export default class Show extends React.Component {
           </label>
           <label className='notes'>
             <span>Notes</span>
-            <textarea value={book.notes || ''} onChange={this.setValue.bind(this, 'notes')} />
+            {this.state.editNotes
+              ? <textarea value={book.notes || ''} onChange={this.setValue.bind(this, 'notes')} onBlur={e => this.setState({editNotes: false})} />
+              : <div onClick={e => this.setState({editNotes: true})} className='notes-block'>{book.notes}</div>}
           </label>
         </div>
       </div>

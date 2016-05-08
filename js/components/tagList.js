@@ -1,5 +1,16 @@
 import React from 'react';
-import {$info, $id, $title} from '../util/book';
+import {$info, $id, $title, $notesLIst} from '../util/book';
+import map from '../util/iters/map';
+import to from '../util/iters/to';
+import compact from '../util/iters/compact';
+import filter from '../util/iters/filter';
+import flatten from '../util/iters/flatten';
+import reject from '../util/iters/reject';
+import entries from '../util/iters/entries';
+import {empty} from '../util/array';
+import reduce from '../util/iters/reduce';
+import group from '../util/iters/group';
+import sorted from '../util/iters/sorted';
 import {$avgRating} from '../util/books';
 import {$toTitle} from '../util/string';
 import {$sortBy} from '../util/array';
@@ -10,6 +21,7 @@ export default class TagList extends React.Component {
   render () {
     const categories = this.categorize(this.props.books);
     return (<div className='taglist-container'>
+      {this.tagsFromNotes(this.props.books)}
       <ul className='taglist-ul'>
         {categories.map(this.renderCategory.bind(this))}
       </ul>
@@ -66,6 +78,35 @@ export default class TagList extends React.Component {
       {$title(book)}
       <small>by {$info(book).authors.join(', ')}</small>
     </li>);
+  }
+
+  tagsFromNotes (books) {
+    const toElem = ([tag, tags]) => {
+      return (<div
+        key={tag}
+        className='hash-tag'
+        onClick={e => update(actions.showHashTag, tag)}
+      >
+        {tag} <small>{tags.length}</small>
+      </div>);
+    };
+
+    const items = books
+      ::map($notesLIst)
+      ::compact()
+      ::map(notes => notes.filter(n => n.includes('#')))
+      ::reject(empty)
+      ::flatten()
+      ::map(note => note.match(/(^|\s)(#[a-z\d-]+)/ig))
+      ::flatten()
+      ::group()
+      ::entries()
+      ::sorted(([_, tags]) => -tags.length)
+      ::to(Array)
+
+    return (<div className='hash-tags-container'>
+      {items.map(toElem)}
+    </div>);
   }
 }
 

@@ -27,3 +27,7 @@ export const $reverse = arr => {
 export function $sortBy (fn, array) {
   return array.slice(0).sort((x, y) => fn(x) - fn(y));
 }
+
+export function empty (array) {
+  return array.length === 0;
+}

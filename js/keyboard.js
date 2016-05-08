@@ -14,6 +14,7 @@ export default class Keyboard extends React.Component {
       break;
       case 'Escape':
         if (this.props.ui.addBook.open) update(actions.toggleAddBook, false);
+        else if (this.props.ui.showHashTag) update(actions.showHashTag, null);
         else update(actions.escape);
       break;
     }

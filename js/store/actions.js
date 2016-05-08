@@ -3,6 +3,7 @@ const actions = {
   setBooks: 'SET_BOOKS',
   addBook: 'ADD_BOOK',
   show: 'SHOW_BOOK',
+  showHashTag: 'SHOW_HASH_TAG',
   editBook: 'EDIT_BOOK',
   removeBook: 'REMOVE_BOOK',
   escape: 'ESCAPE',

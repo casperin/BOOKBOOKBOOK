@@ -180,11 +180,17 @@ body {
 .show-book label input:hover {
   opacity: 1;
 }
-.show-book label textarea {
+.show-book label textarea,
+.show-book label .notes-block {
   font-family: monospace;
   padding: 0.5em;
-  width: 500px;
+  width: 700px;
   height: 250px;
+}
+.show-book label textarea.notes-block,
+.show-book label .notes-block.notes-block {
+  white-space: pre-line;
+  height: auto;
 }
 .show-book .muted {
   color: #aaa;
@@ -381,4 +387,30 @@ body {
 .numbered-list-container small {
   margin-left: 5px;
   color: #999;
+}
+.page.show-hash-tag-container .hash-tag-header {
+  display: flex;
+}
+.page.show-hash-tag-container .book {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  display: flex;
+}
+.page.show-hash-tag-container .book .info {
+  width: 300px;
+}
+.page.show-hash-tag-container .book .notes {
+  max-width: 40em;
+}
+.page.show-hash-tag-container .book .notes .note {
+  margin: 0.5em 1em 0.5em 0;
+  padding: 0.5em 0;
+  font-size: 1.2em;
+  font-family: monospace;
+  white-space: pre-line;
+  border-bottom: 1px solid #ccc;
+}
+.page.show-hash-tag-container .book .notes .note:last-child {
+  border: none;
 }

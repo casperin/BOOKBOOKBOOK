@@ -83,6 +83,15 @@ export default (action, data, state) => {
         }
       };
 
+    case actions.showHashTag:
+      return {
+        ...state,
+        ui: {
+          ...state.ui,
+          showHashTag: data
+        }
+      };
+
     case actions.showStats:
       return {
         ...state,

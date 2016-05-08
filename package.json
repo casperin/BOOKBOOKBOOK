@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "startJs": "watchify js/index.js -t babelify -d -o public/javascripts/index.js",
+    "startJs": "watchify js/index.js -t babelify -v -d -o public/javascripts/index.js",
     "startLogin": "watchify js/login.js -t babelify -d -o public/javascripts/login.js"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
   "devDependencies": {
     "babel-core": "*",
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
+    "babel-polyfill": "^6.8.0",
     "babel-preset-es2015": "*",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
@@ -38,7 +39,8 @@
   "babel": {
     "presets": [
       "es2015",
-      "react"
+      "react",
+      "stage-0"
     ],
     "plugins": [
       "transform-object-rest-spread"

@@ -1,8 +1,10 @@
+import 'babel-polyfill'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import BookList from './components/booklist';
 import Show from './components/show';
 import Stats from './components/stats';
+import HashTag from './components/hashTag';
 import {subscribe, initialState} from './store/state';
 import Keyboard from './keyboard';
 
@@ -30,6 +32,9 @@ const getPage = state => {
 
   if (state.showStats)
     return <Stats books={state.books} />;
+
+  if (state.ui.showHashTag)
+    return <HashTag books={state.books} tag={state.ui.showHashTag} />;
 
   return <BookList {...state} />
 };
