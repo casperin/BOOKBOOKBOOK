@@ -18,13 +18,7 @@ const saveBooks = (path, books, cb) => {
 }
 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  if (!req.cookies.bbbToken) return res.render('login');
-  res.render('index');
-});
-
-router.post('/get-token', function (req, res, next) {
+router.post('/api/get-token', function (req, res, next) {
   const hash = crypto.createHash('sha1').update(req.body.email + SECRET_THING).digest('hex');
   jsonfile.readFile(LOOKUP_PATH, function (err, obj) {
     if (err) return res.status(500).send({error: 'Could not look up stuff'});
@@ -52,7 +46,7 @@ router.post('/get-token', function (req, res, next) {
   })
 });
 
-router.get('/books', function (req, res, next) {
+router.get('/api/books', function (req, res, next) {
   if (!req.cookies.bbbToken) return res.status(401);
   jsonfile.readFile(LOOKUP_PATH, function(err, obj) {
     getBooks(obj[req.cookies.bbbToken].hash, (err, books) => {
@@ -62,7 +56,7 @@ router.get('/books', function (req, res, next) {
   });
 });
 
-router.post('/add-book', (req, res, next) => {
+router.post('/api/add-book', (req, res, next) => {
   if (!req.cookies.bbbToken) return res.status(401);
   const book = req.body;
   const id = $id(book);
@@ -80,14 +74,16 @@ router.post('/add-book', (req, res, next) => {
   });
 });
 
-router.post('/edit-book', (req, res, next) => {
+router.post('/api/edit-book', (req, res, next) => {
   if (!req.cookies.bbbToken) return res.status(401);
-  const editedBook = req.body;
-  const id = $id(editedBook);
+  const id = req.body.id;
+  const modification = req.body.modification;
+  // const editedBook = req.body;
+  // const id = $id(editedBook);
   jsonfile.readFile(LOOKUP_PATH, function(err, obj) {
     getBooks(obj[req.cookies.bbbToken].hash, (err, books) => {
       if (err) return res.status(500).send({error: 'Loading books failed'});
-      books = books.map(book => $id(book) === id ? editedBook : book);
+      books = books.map(book => $id(book) === id ? Object.assign({}, book, modification) : book);
       saveBooks(obj[req.cookies.bbbToken].hash, books, err => {
         if (err) return res.status(500).send({error: 'Saving books failed'});
         res.status(200).send(books);
@@ -96,7 +92,7 @@ router.post('/edit-book', (req, res, next) => {
   });
 });
 
-router.post('/remove-book', (req, res, next) => {
+router.post('/api/remove-book', (req, res, next) => {
   if (!req.cookies.bbbToken) return res.status(401);
   const id = req.body.id;
   jsonfile.readFile(LOOKUP_PATH, function(err, obj) {
@@ -109,6 +105,12 @@ router.post('/remove-book', (req, res, next) => {
       });
     });
   });
+});
+
+/* GET home page. */
+router.get('/*', function(req, res, next) {
+  if (!req.cookies.bbbToken) return res.render('login');
+  res.render('index');
 });
 
 module.exports = router;

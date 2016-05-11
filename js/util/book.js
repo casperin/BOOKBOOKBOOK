@@ -1,21 +1,18 @@
-import {$daysSince} from './date';
+import {daysBetween} from './date';
 
-export const $info = book => book.details.items[0].volumeInfo;
-export const $title = book => book.details.items[0].volumeInfo.title;
-export const $isbn = book => {
-  const isbn = $info(book).industryIdentifiers.find(id => id.type === 'ISBN_10')
-  return isbn ? isbn.identifier : '-';
-}
-export const $id = book => book.details.items[0].id;
+export const bookInfo = book => book ? book.details.items[0].volumeInfo : null;
+export const bookId = book => book ? book.details.items[0].id : null;
+export const bookPhoto = book => book ? bookInfo(book).imageLinks.thumbnail : null;
 
-export const $avgPagesPerDay = book => {
+export const avgPagesPerDay = book => {
   const finished = book.finished || new Date();
-  const duration = $daysSince(book.started, finished);
-  return $info(book).pageCount / duration;
+  const duration = daysBetween(book.started, finished);
+  return bookInfo(book).pageCount / duration;
 }
 
-export const $notesLIst = book => {
-  const notes = book.notes;
-  if (!notes) return null;
-  return notes.split('\n\n');
+export const isReading = book => {
+  if (!book.started) return false;
+  if (book.finished) return false;
+  if (book.abandoned) return false;
+  return true;
 }

@@ -1,43 +1,52 @@
-import 'babel-polyfill'
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BookList from './components/booklist';
-import Show from './components/show';
-import Stats from './components/stats';
-import HashTag from './components/hashTag';
-import {subscribe, initialState} from './store/state';
-import Keyboard from './keyboard';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
 
-class Main extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = initialState;
-  }
+import createSagaMiddleware from 'redux-saga';
+import sagas from './sagas/sagas';
 
-  componentWillMount () {
-    subscribe(state => this.setState(state));
-  }
+// Components
+import App from './components/App';
+import Home from './components/home/Home';
+import Timeline from './components/timeline/Timeline';
+import Notes from './components/notes/Notes';
+import Book from './components/book/Book';
+import Tags from './components/tags/Tags';
 
-  render () {
-    return (<div className='wrapper'>
-      {getPage(this.state)}
-      <Keyboard {...this.state} />
-    </div>);
-  }
-}
+// const thunk = require('redux-thunk');
+import reducers from './reducers/reducers';
+import {routerReducer} from 'react-router-redux';
 
-const getPage = state => {
-  if (typeof state.show === 'number' && state.books[state.show])
-    return <Show book={state.books[state.show]} index={state.show} />;
+const reducer = combineReducers({...reducers, routing: routerReducer});
 
-  if (state.showStats)
-    return <Stats books={state.books} />;
+// Store stuff
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(reducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(sagas);
 
-  if (state.ui.showHashTag)
-    return <HashTag books={state.books} tag={state.ui.showHashTag} />;
+const history = syncHistoryWithStore(browserHistory, store);
 
-  return <BookList {...state} />
-};
+ReactDOM.render(
+  <Provider store={store}>
+    <div className='wrapper'>
+      <Router history={history}>
+        <Route path={'/'} component={App}>
+          <IndexRoute component={Home} />
+          <Route path={'/tab/:tab'} component={Home} />
+          <Route path={'/timeline'} component={Timeline} />
+          <Route path={'/notes'} component={Notes} />
+          <Route path={'/notes/:id'} component={Notes} />
+          <Route path={'/book/:id'} component={Book} />
+          <Route path={'/tags'} component={Tags} />
+          <Route path={'/tags/:tag'} component={Tags} />
+        </Route>
+      </Router>
+    </div>
+  </Provider>,
 
-
-ReactDOM.render(<Main />, document.querySelector('.container'));
+  document.getElementById('mount')
+);
