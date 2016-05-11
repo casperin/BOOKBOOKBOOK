@@ -8,6 +8,7 @@ const BooksTabs = ({tab, modifyBooksOverview}) => {
     <Link className={cx({active: tab === 'all'})} to='/'>All</Link>
     <Link className={cx({active: tab === 'read'})} to='/tab/read'>Read</Link>
     <Link className={cx({active: tab === 'unread'})} to='/tab/unread'>Unread</Link>
+    <Link className={cx({active: tab === 'owned'})} to='/tab/owned'>Owned</Link>
   </div>);
 };
 

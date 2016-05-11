@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {bookId, bookInfo} from '../../util/book';
 import {Link} from 'react-router';
 import BookCover from '../book/Cover';
+import sorted from '../../util/sorted';
+import to from '../../util/to';
 
 class BooksOverview extends React.Component {
   render () {
@@ -30,6 +32,10 @@ class BooksOverview extends React.Component {
       if (book.started) return false;
       return true;
     }
+
+    if (tab === 'owned') {
+      return book.number != null;
+    }
   }
 
   filterBook (book) {
@@ -42,8 +48,12 @@ class BooksOverview extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
+  const books = props.books || state.books;
+
   return {
-    books: props.books || state.books,
+    books: props.tab === 'owned'
+      ? books::sorted(b => -b.number)::to(Array)
+      : books,
     filter: state.components.booksOverview.filter
   };
 };

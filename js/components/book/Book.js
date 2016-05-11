@@ -53,6 +53,7 @@ class Book extends React.Component {
             {this.summaryItem('Bought', 'date', 'bought')}
             {this.summaryItem('Started', 'date', 'started', duration ? `${duration} days` : null)}
             {this.summaryItem('Finished', 'date', 'finished')}
+            {this.summaryItem('Abandoned', 'number', 'abandoned')}
             {this.summaryItem('Ex Libris', 'text', 'exLibris')}
           </div>
 
