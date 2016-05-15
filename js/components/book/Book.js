@@ -5,7 +5,7 @@ import SummaryItem from './SummaryItem';
 import BookNotes from './Notes';
 import BookCover from './Cover';
 import Rating from './Rating';
-import {bookId, bookInfo, bookPhoto} from '../../util/book';
+import {bookId, bookInfo, bookPhoto, bookCategory} from '../../util/book';
 import {modifyBook} from '../../actions/book';
 import {removeBook} from '../../actions/books';
 import {daysBetween} from '../../util/date';
@@ -39,6 +39,7 @@ class Book extends React.Component {
         <div className='content'>
           <h1 className='title'>{info.title}</h1>
           <h2 className='authors'>{info.authors.join(', ')}</h2>
+          <div className='category'>{bookCategory(book)}</div>
 
           <button onClick={e => this.setState({showDescription: !this.state.showDescription})}>
             {this.state.showDescription ? 'Hide' : 'See'} description
@@ -49,7 +50,7 @@ class Book extends React.Component {
 
           <div className='summary'>
             {this.summaryItem('#', 'number', 'number')}
-            <SummaryItem label='Pages' value={info.pageCount} extra={duration ? `${parseInt(info.pageCount/duration, 10)} / day` : ''} />
+            <SummaryItem label='Pages' value={info.pageCount} extra={duration ? `${parseInt((book.abandoned || info.pageCount)/duration, 10)} / day` : ''} />
             {this.summaryItem('Bought', 'date', 'bought')}
             {this.summaryItem('Started', 'date', 'started', duration ? `${duration} days` : null)}
             {this.summaryItem('Finished', 'date', 'finished')}

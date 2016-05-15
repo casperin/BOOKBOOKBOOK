@@ -9,5 +9,6 @@ export default ({location}) => {
     <Link to='/timeline' className={cx({active: pathname.substr(0, 9) === '/timeline'})}>Timeline</Link>
     <Link to='/notes' className={cx({active: pathname.substr(0, 6) === '/notes'})}>Notes</Link>
     <Link to='/tags' className={cx({active: pathname.substr(0, 5) === '/tags'})}>Tags</Link>
+    <Link to='/stats' className={cx({active: pathname.substr(0, 6) === '/stats'})}>Stats</Link>
   </div>);
 }

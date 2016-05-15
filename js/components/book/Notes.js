@@ -11,8 +11,6 @@ class BookNotes extends React.Component {
     super(props);
     this.state = {
       editing: false,
-      width: 600,
-      height: 800,
       notes: null
     };
   }
@@ -28,18 +26,17 @@ class BookNotes extends React.Component {
     if (!this.props.book) return null;
 
     return (<div className='book-notes-component'>
-      {this.props.locked ? null : this.editHeader()}
+      {this.props.locked ? null : <div className='edit-header'><button onClick={::this.edit}>Edit</button></div>}
+      <div className='book-notes'><ReactMarkdown source={this.props.notes} transformLinkUri={uri => `/tags/${uri}`} /></div>
 
-      {this.state.editing
-        ? <textarea value={this.state.notes} ref='textarea' style={{width: this.state.width, height: this.state.height}} onChange={::this.onChange} />
-        : <div className='book-notes' ref='display'><ReactMarkdown source={this.props.notes} transformLinkUri={uri => `/tags/${uri}`} /></div>}
+      {this.editOverlay()}
     </div>);
   }
 
-  editHeader () {
-    if (!this.state.editing) return <div className='edit-header'><button onClick={::this.edit}>Edit</button></div>;
-
-    return (<div className='edit-header'>
+  editOverlay () {
+    if (!this.state.editing) return null;
+    return (<div className='book-notes-edit-container'>
+      <textarea value={this.state.notes} ref='textarea' onChange={::this.onChange} onKeyDown={::this.onKeyDown} />
       <button onClick={::this.save}>Save</button>
     </div>);
   }
@@ -48,12 +45,14 @@ class BookNotes extends React.Component {
     this.setState({notes: e.target.value});
   }
 
+  onKeyDown ({key, metaKey}) {
+    if (key === 'Escape') this.cancel();
+    if (key === 'Enter' && metaKey) this.save();
+  }
+
   edit () {
-    const {width, height} = this.refs.display.getBoundingClientRect();
     this.setState({
       editing: true,
-      width: Math.max(width - 20, 300),
-      height: Math.max(height, 200),
       notes: this.props.notes
     });
   }
@@ -62,6 +61,13 @@ class BookNotes extends React.Component {
     const modification = {notes: this.refs.textarea.value};
     this.props.modifyBook(bookId(this.props.book), modification)
     this.setState({editing: false, notes: null});
+  }
+
+  cancel () {
+    this.setState({
+      editing: false,
+      notes: null
+    });
   }
 }
 

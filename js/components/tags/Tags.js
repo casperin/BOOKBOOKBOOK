@@ -29,7 +29,7 @@ class Tags extends React.Component {
         <div className='sidebar'>
           {this.props.tags.map(([tag, tags]) => {
             const active = tag === this.props.tag;
-            return (<div className='tag-item'>
+            return (<div className='tag-item' key={tag}>
               <Link to={`/tags/${tag}`} key={tag} className={cx({active})}>{tag}</Link>
               <small>{tags.length}</small>
             </div>);

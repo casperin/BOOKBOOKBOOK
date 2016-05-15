@@ -71,6 +71,10 @@ a.active {
 .book-component .book-display .authors {
   font-weight: 400;
   font-size: 1em;
+  margin: 0;
+}
+.book-component .book-display .category {
+  font-style: italic;
   margin: 0 0 0.5em;
 }
 .book-component .description {
@@ -104,11 +108,25 @@ a.active {
   background: #ff0;
   outline: 1px solid #ffa500;
 }
-.book-notes-component textarea {
-  margin: 1em 0;
+.book-notes-component .book-notes-edit-container {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: #f5f5f5;
+}
+.book-notes-component .book-notes-edit-container textarea {
+  flex: 1;
   padding: 1em 9px;
   font-family: monospace;
   font-size: 1em;
+}
+.book-notes-component .book-notes-edit-container button {
+  font-weight: bold;
+  align-self: flex-end;
 }
 .book-cover-component {
   position: relative;
@@ -415,4 +433,58 @@ a.active {
 }
 .tags-component .preview-container .book-notes-component {
   margin-bottom: 20px;
+}
+.stats-component hr {
+  margin: 3em 0;
+}
+.stats-component table {
+  text-align: right;
+  border-collapse: collapse;
+}
+.stats-component table td {
+  padding-left: 80px;
+  font-family: monospace;
+}
+.stats-component table td em {
+  font-style: normal;
+  background: #ffa;
+}
+.stats-component table td.non-data {
+  display: flex;
+  font-family: inherit;
+  text-align: left;
+}
+.stats-component table td.non-data a img {
+  width: 30px;
+  margin-right: 5px;
+}
+.stats-component table thead th {
+  border-bottom: 1px solid #000;
+}
+.stats-component table thead th:first-child {
+  border-color: transparent;
+}
+.stats-component table tbody th {
+  border-right: 1px solid #000;
+  padding-right: 5px;
+  padding: 3px 5px;
+}
+.quick-view-component .quick-view-container {
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  margin: 5px 0;
+  display: flex;
+  border: 1px solid #000;
+  padding: 10px;
+}
+.quick-view-component .quick-view-container .left {
+  margin-right: 10px;
+}
+.quick-view-component .quick-view-container .right .title {
+  font-weight: 800;
+}
+.quick-view-component .quick-view-container .right .category-pagecount {
+  font-style: italic;
+  margin-bottom: 0.5em;
 }

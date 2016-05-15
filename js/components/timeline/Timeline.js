@@ -47,7 +47,7 @@ class Timeline extends React.Component {
 
   renderBookColumn (db, i) {
     const info = bookInfo(db.book);
-    const height = db.book.abandoned ? 3 * SCALE : (db.duration * SCALE) + SCALE;
+    const height = db.duration * SCALE + SCALE;
     const bottom = db.started * SCALE;
     const left = getColumn(i, bottom, height) * COLUMN_WIDTH;
     const rating = 'rating-'+db.book.rating;

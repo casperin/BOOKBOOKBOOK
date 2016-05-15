@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {bookId, bookInfo} from '../../util/book';
+import {bookId, bookInfo, isReading} from '../../util/book';
 import {Link} from 'react-router';
 import BookCover from '../book/Cover';
 import sorted from '../../util/sorted';
@@ -23,6 +23,7 @@ class BooksOverview extends React.Component {
     if (tab === 'all') return true;
 
     if (tab === 'read') {
+      if (isReading(book)) return true;
       if (book.finished) return true;
       if (book.abandoned) return true;
       return false;
@@ -52,10 +53,18 @@ const mapStateToProps = (state, props) => {
 
   return {
     books: props.tab === 'owned'
-      ? books::sorted(b => -b.number)::to(Array)
-      : books,
+      ? books::sorted(b => -b.number)
+      : books::sorted(sort),
     filter: state.components.booksOverview.filter
   };
+};
+
+const sort = book => {
+  if (isReading(book)) return -Infinity;
+  if (book.finished) return -new Date(book.finished);
+  if (book.started) return -new Date(book.started);
+  if (book.bought) return -new Date(book.bought);
+  return Infinity;
 };
 
 export default connect(mapStateToProps)(BooksOverview);

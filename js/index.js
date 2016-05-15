@@ -16,6 +16,7 @@ import Timeline from './components/timeline/Timeline';
 import Notes from './components/notes/Notes';
 import Book from './components/book/Book';
 import Tags from './components/tags/Tags';
+import Stats from './components/stats/Stats';
 
 // const thunk = require('redux-thunk');
 import reducers from './reducers/reducers';
@@ -43,6 +44,7 @@ ReactDOM.render(
           <Route path={'/book/:id'} component={Book} />
           <Route path={'/tags'} component={Tags} />
           <Route path={'/tags/:tag'} component={Tags} />
+          <Route path={'/stats'} component={Stats} />
         </Route>
       </Router>
     </div>
