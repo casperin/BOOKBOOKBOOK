@@ -8,7 +8,7 @@ document.querySelector('.submit-btn').addEventListener('click', function (e) {
   console.log(email);
   xhr({
     headers: { 'Content-Type': 'application/json' },
-    url: '/get-token',
+    url: '/api/get-token',
     body: JSON.stringify({ email: email }),
     method: 'POST'
   }, function (err, res, body) {
@@ -306,7 +306,7 @@ function forEach(list, iterator, context) {
     if (arguments.length < 3) {
         context = this
     }
-    
+
     if (toString.call(list) === '[object Array]')
         forEachArray(list, iterator, context)
     else if (typeof list === 'string')
