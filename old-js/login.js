@@ -5,7 +5,7 @@ document.querySelector('.submit-btn').addEventListener('click', function (e) {
   console.log(email);
   xhr({
     headers: {'Content-Type': 'application/json'},
-    url: '/get-token',
+    url: '/api/get-token',
     body: JSON.stringify({email}),
     method: 'POST'
   }, (err, res, body) => {
