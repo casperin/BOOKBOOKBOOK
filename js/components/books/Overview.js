@@ -12,10 +12,19 @@ class BooksOverview extends React.Component {
 
     return (<div className='books-overview-component'>
       {this.props.books
-        .filter(this.applyTabs.bind(this))
-        .filter(this.filterBook.bind(this))
-        .map(book => <BookCover book={book} link key={bookId(book)} />)}
+        .filter(::this.applyTabs)
+        .filter(::this.filterBook)
+        .map(::this.renderCover)}
     </div>);
+  }
+
+  renderCover (book) {
+    let meta = [];
+    if (this.props.tab === 'owned') meta.push(book.number);
+    if (isReading(book)) meta.push('❀');
+    if (book.exLibris) meta.push('✈');
+
+    return <BookCover book={book} meta={meta.join(' ')} link key={bookId(book)} />
   }
 
   applyTabs (book) {
@@ -55,7 +64,7 @@ const mapStateToProps = (state, props) => {
     books: props.tab === 'owned'
       ? books::sorted(b => -b.number)
       : books::sorted(sort),
-    filter: state.components.booksOverview.filter
+      filter: state.components.booksOverview.filter
   };
 };
 

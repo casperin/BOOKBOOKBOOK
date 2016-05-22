@@ -138,28 +138,6 @@ a.active {
   margin: 0 0 -1px -1px;
   border: 1px solid #ccc;
 }
-.book-cover-component:before,
-.book-cover-component:after {
-  position: absolute;
-  top: 0;
-  color: #008000;
-  padding: 3px;
-}
-.book-cover-component:before {
-  left: 0;
-}
-.book-cover-component:after {
-  right: 0;
-}
-.book-cover-component.reading:before {
-  content: 'R';
-}
-.book-cover-component.exlibris:before {
-  content: '✈';
-}
-.book-cover-component:hover {
-  cursor: pointer;
-}
 .book-cover-component .cover-container {
   flex: 1;
 }
@@ -168,6 +146,14 @@ a.active {
 }
 .book-cover-component .star:hover {
   color: #000;
+}
+.book-cover-component .meta {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0 2px;
+  background: rgba(255,255,255,0.8);
 }
 .book-add-book-component {
   margin-left: 10px;

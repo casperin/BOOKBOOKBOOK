@@ -1,0 +1,34 @@
+.stats-component
+
+  hr
+    margin 3em 0
+
+  table
+    text-align right
+    border-collapse collapse
+    td
+      padding-left 80px
+      font-family monospace
+      em
+        font-style normal
+        background #ffa
+      &.non-data
+        display flex
+        font-family inherit
+        text-align left
+        a img
+          width 30px
+          margin-right 5px
+
+    thead
+      th
+        border-bottom 1px solid black
+        &:first-child
+          border-color transparent
+
+    tbody
+      th
+        border-right 1px solid black
+        padding-right 5px
+        padding 3px 5px
+
