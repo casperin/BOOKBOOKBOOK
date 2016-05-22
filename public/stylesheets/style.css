@@ -420,3 +420,57 @@ a.active {
 .tags-component .preview-container .book-notes-component {
   margin-bottom: 20px;
 }
+.stats-component hr {
+  margin: 3em 0;
+}
+.stats-component table {
+  text-align: right;
+  border-collapse: collapse;
+}
+.stats-component table td {
+  padding-left: 80px;
+  font-family: monospace;
+}
+.stats-component table td em {
+  font-style: normal;
+  background: #ffa;
+}
+.stats-component table td.non-data {
+  display: flex;
+  font-family: inherit;
+  text-align: left;
+}
+.stats-component table td.non-data a img {
+  width: 30px;
+  margin-right: 5px;
+}
+.stats-component table thead th {
+  border-bottom: 1px solid #000;
+}
+.stats-component table thead th:first-child {
+  border-color: transparent;
+}
+.stats-component table tbody th {
+  border-right: 1px solid #000;
+  padding-right: 5px;
+  padding: 3px 5px;
+}
+.quick-view-component .quick-view-container {
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  margin: 5px 0;
+  display: flex;
+  border: 1px solid #000;
+  padding: 10px;
+}
+.quick-view-component .quick-view-container .left {
+  margin-right: 10px;
+}
+.quick-view-component .quick-view-container .right .title {
+  font-weight: 800;
+}
+.quick-view-component .quick-view-container .right .category-pagecount {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}

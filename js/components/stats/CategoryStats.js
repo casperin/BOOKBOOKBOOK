@@ -11,6 +11,7 @@ import to from '../../util/to';
 import sorted from '../../util/sorted';
 import reduce from '../../util/reduce';
 
+
 const avgRating = books => books::map(b => b.rating)::reduce((a, b) => a + b) / books.length;
 
 class CategoryStats extends React.Component {

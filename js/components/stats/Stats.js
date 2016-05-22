@@ -4,6 +4,7 @@ import Header from '../header/Header';
 import SummaryTable from './SummaryTable';
 import CategoryStats from './CategoryStats';
 
+
 class Stats extends React.Component {
   render () {
     if (!this.props.books) return null;

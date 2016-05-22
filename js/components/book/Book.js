@@ -11,6 +11,7 @@ import {removeBook} from '../../actions/books';
 import {daysBetween} from '../../util/date';
 import {browserHistory} from 'react-router';
 
+
 class Book extends React.Component {
   constructor (props) {
     super(props);
