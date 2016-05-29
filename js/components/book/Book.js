@@ -27,6 +27,8 @@ class Book extends React.Component {
     const info = bookInfo(book);
     const duration = daysBetween(book.started, book.finished);
 
+    console.log(book, info);
+
     return (<div className='book-component'>
       <Header>
         <button onClick={this.removeBook.bind(this)}>Remove book</button>
@@ -52,6 +54,7 @@ class Book extends React.Component {
           <div className='summary'>
             {this.summaryItem('#', 'number', 'number')}
             <SummaryItem label='Pages' value={info.pageCount} extra={duration ? `${parseInt((book.abandoned || info.pageCount)/duration, 10)} / day` : ''} />
+            <SummaryItem label='ISBN' value={info.industryIdentifiers[0].identifier} />
             {this.summaryItem('Bought', 'date', 'bought')}
             {this.summaryItem('Started', 'date', 'started', duration ? `${duration} days` : null)}
             {this.summaryItem('Finished', 'date', 'finished')}
