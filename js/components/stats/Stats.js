@@ -23,10 +23,7 @@ class Stats extends React.Component {
         <ol reversed={true}>
           {this.props.books::filter(b => b.number)::sorted(b => -b.number)::map(book => {
             const info = bookInfo(book);
-            const abandoned = book.abandoned
-              ? `(abandoned after ~${book.abandoned} pages)`
-              : null;
-            return <li key={bookId(book)}>{info.title} - {info.authors.join(', ')} {abandoned}</li>;
+            return <li key={bookId(book)}>{info.title} - <em>{info.authors.join(', ')}</em></li>;
           })::to(Array)}
         </ol>
       </div>
